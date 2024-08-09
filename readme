@@ -1,0 +1,81 @@
+# Flask Application
+
+## Overview
+
+This Flask application provides endpoints for generating mock data, processing it, and retrieving it from an LRU (Least Recently Used) cache. The application efficiently manages and retrieves data using caching and supports range queries.
+
+## Setup Instructions
+
+1. **Create a Virtual Environment**
+
+   Create a virtual environment to manage dependencies:
+
+   ```bash
+   python3 -m venv venv
+   ```
+
+2. **Activate virtual environment**
+
+   ```bash
+   source venv/bin/activate
+   ```
+
+3. **Install dependencies**
+
+   ```bash
+   pip3 install -r requirements.txt
+   ```
+
+4. **Run the Flask app**
+
+   ```bash
+   python3 app.py
+   ```
+
+5. **Generate mock data to test the POC**
+
+   Call the **_Generate Mock Data_** endpoint listed below
+
+## Application Structure
+
+### File: `app.py`
+
+This file contains the Flask application and the following endpoints:
+
+1.  **Generate Mock Data:** Creates a mock data file if it doesn't exist.
+
+    - **Endpoint:** `/generate-mock-data`
+    - **Method:** `GET`
+    - **Response:** JSON message indicating file creation or existence.
+
+2.  **Fetch Data:** Processes data and stores it in the cache.
+
+    - **Endpoint:** `/fetch-data`
+    - **Method:** `GET`
+    - **Response:** JSON message indicating the processing status and cache size.
+
+3.  **Get Data:** Retrieves a range of data from the cache and streams it line by line.
+
+    - **Endpoint:** `/get-data`
+    - **Method:** `GET`
+    - **Query Parameters:**
+      - `start` (int): Start index of the data range.
+      - `end` (int): End index of the data range.
+    - **Response:** Streaming response with the requested data range.
+
+## Constants and Configuration
+
+- `DATA_FILE_PATH`: Path to the mock data file.
+- `DATA_FILE_SIZE`: Size of the data file in bytes.
+- `file_lock`: Thread lock for ensuring thread safety.
+- `data_cache`: LRUCache object for caching data.
+
+## Dependencies
+
+- Flask: Web framework for creating the API.
+- cachetools: Library for implementing LRU caching.
+
+## Notes
+
+- The application uses a file lock to ensure that data processing and caching are thread-safe.
+- Replace `python3` with appropriate python binary installed on your system.

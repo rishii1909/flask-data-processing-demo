@@ -1,0 +1,20 @@
+# Python bytecode
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environment
+venv/
+env/
+.venv
+
+# Flask
+mock_data.txt
+
+# Logs
+*.log
+
+# Environment files
+.env
+
